@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Emil Stenberg",
+      "authorEmail": "emilsten@kth.se",
+      "authorUrl": ""
+    }
+  }
+}
