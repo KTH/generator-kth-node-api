@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
+const path = require('path')
 
 module.exports = class extends Generator {
   prompting () {
@@ -10,11 +11,14 @@ module.exports = class extends Generator {
       'Welcome to the dandy ' + chalk.red('generator-kth-node-api') + ' generator!'
     ))
 
+    this.log(this.sourceRoot(), )
+
     const prompts = [
       {
         type: 'text',
         name: 'name',
-        message: "What's the name of the app?"
+        message: "What's the name of the app?",
+        default: process.cwd().split(path.sep).pop()
       },
       {
         type: 'confirm',
