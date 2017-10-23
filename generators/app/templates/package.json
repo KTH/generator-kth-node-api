@@ -1,18 +1,13 @@
 {
   "//": "The production flag is added in the jenkins build script.",
-  "name": "node-api",
+  "name": "<%= name%>",
   "version": "2.0.0",
-  "description": "Node.js based API template application.",
+  "description": "",
   "main": "app.js",
-  "private": true,
   "scripts": {
-    "test": "mocha test/**/*.js",
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development nodemon app.js"
   },
-  "pre-push": [
-    "test"
-  ],
   "dependencies": {
     "body-parser": "^1.15.2",
     "component-registry": "^0.2.0",

@@ -12,23 +12,28 @@ module.exports = class extends Generator {
 
     const prompts = [
       {
+        type: 'text',
+        name: 'name',
+        message: "What's the name of the app?"
+      },
+      {
         type: 'confirm',
         name: 'useMongo',
         message: 'Would you like to use a Mongo database?',
         default: false
       },
-    {
-      type: 'confirm',
-      name: 'useAuth',
-      message: 'Would you like to use authentication?',
-      default: false
-    },
-    {
-      type: 'confirm',
-      name: 'useSwagger',
-      message: 'Would you like to use Swagger?',
-      default: false
-    }
+      {
+        type: 'confirm',
+        name: 'useAuth',
+        message: 'Would you like to use authentication?',
+        default: false
+      },
+      {
+        type: 'confirm',
+        name: 'useSwagger',
+        message: 'Would you like to use Swagger?',
+        default: false
+      }
     ]
 
     return this.prompt(prompts).then(props => {
@@ -38,10 +43,11 @@ module.exports = class extends Generator {
   }
 
   writing () {
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('package.json'),
-      this.destinationPath('package.json')
-    )
+      this.destinationPath('package.json'),
+     { name: this.props.name }
+   )
   }
 
   install () {
@@ -56,15 +62,11 @@ module.exports = class extends Generator {
       this.npmInstall(['swagger-ui'], { 'save': true })
     }
 
-    if(this.props.useAuth){
+    if (this.props.useAuth) {
       this.npmInstall(['passport'], { 'save': true })
     }
 
     // this.log('Running npm install for you')
     // this.npmInstall()
-  }
-
-  method1oeu () {
-    this.log('method 1 just ran')
   }
 }
