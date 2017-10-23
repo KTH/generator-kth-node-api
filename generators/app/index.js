@@ -10,22 +10,24 @@ module.exports = class extends Generator {
       'Welcome to the dandy ' + chalk.red('generator-kth-node-api') + ' generator!'
     ))
 
-    const prompts = [{
-      type: 'confirm',
-      name: 'useMongo',
-      message: 'Would you like to use a Mongo database?',
-      default: false
-    },{
-      type: 'confirm',
-      name: 'useAuth',
-      message: 'Would you like to use authentication?',
-      default: false
-    },{
-      type: 'confirm',
-      name: 'useSwagger',
-      message: 'Would you like to use Swagger?',
-      default: false
-    }]
+    const prompts = [
+    //   {
+    //   type: 'confirm',
+    //   name: 'useMongo',
+    //   message: 'Would you like to use a Mongo database?',
+    //   default: false
+    // },{
+    //   type: 'confirm',
+    //   name: 'useAuth',
+    //   message: 'Would you like to use authentication?',
+    //   default: false
+    // },{
+    //   type: 'confirm',
+    //   name: 'useSwagger',
+    //   message: 'Would you like to use Swagger?',
+    //   default: false
+    // }
+  ]
 
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
@@ -35,12 +37,17 @@ module.exports = class extends Generator {
 
   writing () {
     this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+      this.templatePath('package.json'),
+      this.destinationPath('package.json')
     )
   }
 
   install () {
-    this.installDependencies()
+    this.log('Running npm install for you')
+    this.npmInstall()
+  }
+
+  method1oeu() {
+    this.log('method 1 just ran');
   }
 }
