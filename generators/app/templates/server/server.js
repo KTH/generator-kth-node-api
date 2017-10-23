@@ -69,6 +69,7 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(cookieParser())
 
+<% if(useAuth){ %>
 /* ******************************
  * ******* AUTHENTICATION *******
  * ******************************
@@ -77,7 +78,7 @@ const passport = require('passport')
 require('./authentication')
 server.use(passport.initialize())
 server.use(passport.session())
-
+<% } %>
 /* ************************
  * ******* DATABASE *******
  * ************************

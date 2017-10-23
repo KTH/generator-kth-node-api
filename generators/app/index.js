@@ -53,6 +53,12 @@ module.exports = class extends Generator {
      { name: this.props.name }
    )
 
+   this.fs.copyTpl(
+     this.templatePath('server/server.js'),
+     this.destinationPath('server/server.js'),
+    { useAuth: this.props.useAuth }
+  )
+
    if(this.props.useAuth){
      this.fs.copy(
        this.templatePath('server/authentication.js'),
