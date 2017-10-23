@@ -16,18 +16,19 @@ module.exports = class extends Generator {
         name: 'useMongo',
         message: 'Would you like to use a Mongo database?',
         default: false
-      }
-    // {
-    //   type: 'confirm',
-    //   name: 'useAuth',
-    //   message: 'Would you like to use authentication?',
-    //   default: false
-    // },{
-    //   type: 'confirm',
-    //   name: 'useSwagger',
-    //   message: 'Would you like to use Swagger?',
-    //   default: false
-    // }
+      },
+    {
+      type: 'confirm',
+      name: 'useAuth',
+      message: 'Would you like to use authentication?',
+      default: false
+    },
+    {
+      type: 'confirm',
+      name: 'useSwagger',
+      message: 'Would you like to use Swagger?',
+      default: false
+    }
     ]
 
     return this.prompt(prompts).then(props => {
@@ -49,7 +50,17 @@ module.exports = class extends Generator {
       this.npmInstall(['kth-node-mongo'], { 'save': true })
       this.npmInstall(['mongoose'], { 'save': true })
     }
-    this.log('Running npm install for you')
+
+    if (this.props.useSwagger) {
+      this.log('installing dependencies for Swagger')
+      this.npmInstall(['swagger-ui'], { 'save': true })
+    }
+
+    if(this.props.useAuth){
+      this.npmInstall(['passport'], { 'save': true })
+    }
+
+    // this.log('Running npm install for you')
     // this.npmInstall()
   }
 
