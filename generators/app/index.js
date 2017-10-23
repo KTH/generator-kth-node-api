@@ -56,7 +56,9 @@ module.exports = class extends Generator {
    this.fs.copyTpl(
      this.templatePath('server/server.js'),
      this.destinationPath('server/server.js'),
-    { useAuth: this.props.useAuth }
+    { useAuth: this.props.useAuth,
+      useMongo: this.props.useMongo,
+      useSwagger: this.props.useSwagger }
   )
 
    if(this.props.useAuth){
@@ -65,6 +67,14 @@ module.exports = class extends Generator {
        this.destinationPath('server/authentication.js')
     )
    }
+
+
+   // Copy every other file
+   this.fs.copy(
+     this.templatePath('*/!(swagger.json|package.json|server.js)'),
+     this.destinationPath('.'),
+     {skip: true}
+  )
   }
 
   install () {
