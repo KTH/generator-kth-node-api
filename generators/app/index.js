@@ -30,7 +30,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useAuth',
         message: 'Would you like to use authentication?',
-        default: false
+        default: true
       },
       {
         type: 'confirm',
@@ -52,6 +52,13 @@ module.exports = class extends Generator {
       this.destinationPath('package.json'),
      { name: this.props.name }
    )
+
+   if(this.props.useAuth){
+     this.fs.copy(
+       this.templatePath('server/authentication.js'),
+       this.destinationPath('server/authentication.js')
+    )
+   }
   }
 
   install () {
