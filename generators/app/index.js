@@ -48,42 +48,28 @@ module.exports = class extends Generator {
   }
 
   writing () {
-  //   this.fs.copyTpl(
-  //     this.templatePath('package.json'),
-  //     this.destinationPath('package.json'),
-  //    { name: this.props.name }
-  //  )
-  //
-  //   this.fs.copyTpl(
-  //    this.templatePath('server/server.js'),
-  //    this.destinationPath('server/server.js'),
-  //     { useAuth: this.props.useAuth,
-  //       useMongo: this.props.useMongo,
-  //       useSwagger: this.props.useSwagger }
-  // )
-  //
-  //   if (this.props.useAuth) {
-  //     this.fs.copy(
-  //     this.templatePath('server/authentication.js'),
-  //     this.destinationPath('server/authentication.js')
-  //  )
-  //   }
-  //
-  //   if (this.props.useMongo) {
-  //     this.fs.copy(
-  //     this.templatePath('server/database.js'),
-  //     this.destinationPath('server/database.js')
-  //  )
-  //
-  //  // TODO: models folder
-  //   }
+    if (this.props.useAuth) {
+      this.fs.copy(
+      this.templatePath('server/authentication.js'),
+      this.destinationPath('server/authentication.js')
+   )
+    }
 
-  //   if (this.props.useSwagger) {
-  //     this.fs.copy(
-  //     this.templatePath('swagger.json'),
-  //     this.destinationPath('swagger.json')
-  //  )
-  //   }
+    if (this.props.useMongo) {
+      this.fs.copy(
+      this.templatePath('server/database.js'),
+      this.destinationPath('server/database.js')
+   )
+
+   // TODO: models folder
+    }
+
+    if (this.props.useSwagger) {
+      this.fs.copy(
+      this.templatePath('swagger.json'),
+      this.destinationPath('swagger.json')
+   )
+    }
 
    // Copy every other file
     this.fs.copyTpl(
@@ -93,7 +79,7 @@ module.exports = class extends Generator {
       {},
       {globOptions: {
         debug:true,
-        ignore: ['**/authentication.js', '**/swagger.json']}}
+        ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*']}}
   )
   }
 
