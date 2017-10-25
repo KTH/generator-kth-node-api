@@ -38,6 +38,7 @@ module.exports = class extends Generator {
         message: 'Would you like to use Swagger?',
         default: false
       }
+      // TODO: robots.txt?
     ]
 
     return this.prompt(prompts).then(props => {
@@ -47,50 +48,56 @@ module.exports = class extends Generator {
   }
 
   writing () {
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'),
-     { name: this.props.name }
-   )
+  //   this.fs.copyTpl(
+  //     this.templatePath('package.json'),
+  //     this.destinationPath('package.json'),
+  //    { name: this.props.name }
+  //  )
+  //
+  //   this.fs.copyTpl(
+  //    this.templatePath('server/server.js'),
+  //    this.destinationPath('server/server.js'),
+  //     { useAuth: this.props.useAuth,
+  //       useMongo: this.props.useMongo,
+  //       useSwagger: this.props.useSwagger }
+  // )
+  //
+  //   if (this.props.useAuth) {
+  //     this.fs.copy(
+  //     this.templatePath('server/authentication.js'),
+  //     this.destinationPath('server/authentication.js')
+  //  )
+  //   }
+  //
+  //   if (this.props.useMongo) {
+  //     this.fs.copy(
+  //     this.templatePath('server/database.js'),
+  //     this.destinationPath('server/database.js')
+  //  )
+  //
+  //  // TODO: models folder
+  //   }
 
-   this.fs.copyTpl(
-     this.templatePath('server/server.js'),
-     this.destinationPath('server/server.js'),
-    { useAuth: this.props.useAuth,
-      useMongo: this.props.useMongo,
-      useSwagger: this.props.useSwagger }
-  )
-
-  if(this.props.useAuth){
-    this.fs.copy(
-      this.templatePath('server/authentication.js'),
-      this.destinationPath('server/authentication.js')
-   )
-  }
-
-  if(this.props.useMongo){
-    this.fs.copy(
-      this.templatePath('server/database.js'),
-      this.destinationPath('server/database.js')
-   )
-  }
-
-  if(this.props.useSwagger){
-    this.fs.copy(
-      this.templatePath('swagger.json'),
-      this.destinationPath('swagger.json')
-   )
-  }
+  //   if (this.props.useSwagger) {
+  //     this.fs.copy(
+  //     this.templatePath('swagger.json'),
+  //     this.destinationPath('swagger.json')
+  //  )
+  //   }
 
    // Copy every other file
-   this.fs.copy(
-     this.templatePath('*/!(swagger.json|package.json|server.js|authentication.js|database.js)'),
-     this.destinationPath('.'),
-     {skip: true}
+    this.fs.copyTpl(
+     this.templatePath('**/*'),
+     this.destinationPath('./'),
+      this.props,
+      {},
+      {globOptions: {
+        ignore: ['server/authentication.js']}}
   )
   }
 
   install () {
+    return
     if (this.props.useMongo) {
       this.log('installing dependencies for MongoDB')
       this.npmInstall(['kth-node-mongo'], { 'save': true })
