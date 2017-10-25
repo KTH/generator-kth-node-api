@@ -24,12 +24,5 @@
     "kth-node-response": "KTH/kth-node-response.git#v1.0.0",
     "kth-node-server": "^3.0.3",
     "safe-utils": "0.1.0"
-  },
-  "devDependencies": {
-    "cross-env": "^2.0.0",
-    "nodemon": "^1.10.0",
-    "standard": "^7.1.2"
-  },
-  "engines": {
   }
 }

@@ -30,7 +30,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useAuth',
         message: 'Would you like to use authentication?',
-        default: true
+        default: false
       },
       {
         type: 'confirm',
@@ -61,17 +61,30 @@ module.exports = class extends Generator {
       useSwagger: this.props.useSwagger }
   )
 
-   if(this.props.useAuth){
-     this.fs.copy(
-       this.templatePath('server/authentication.js'),
-       this.destinationPath('server/authentication.js')
-    )
-   }
+  if(this.props.useAuth){
+    this.fs.copy(
+      this.templatePath('server/authentication.js'),
+      this.destinationPath('server/authentication.js')
+   )
+  }
 
+  if(this.props.useMongo){
+    this.fs.copy(
+      this.templatePath('server/database.js'),
+      this.destinationPath('server/database.js')
+   )
+  }
+
+  if(this.props.useSwagger){
+    this.fs.copy(
+      this.templatePath('swagger.json'),
+      this.destinationPath('swagger.json')
+   )
+  }
 
    // Copy every other file
    this.fs.copy(
-     this.templatePath('*/!(swagger.json|package.json|server.js)'),
+     this.templatePath('*/!(swagger.json|package.json|server.js|authentication.js|database.js)'),
      this.destinationPath('.'),
      {skip: true}
   )
@@ -92,6 +105,11 @@ module.exports = class extends Generator {
     if (this.props.useAuth) {
       this.npmInstall(['passport'], { 'save': true })
     }
+
+    // Install dev dependencies to make sure an up to date version is used
+    this.npmInstall(['standard'], { 'save-dev': true })
+    this.npmInstall(['nodemon'], { 'save-dev': true })
+    this.npmInstall(['cross-env'], { 'save-dev': true })
 
     // this.log('Running npm install for you')
     // this.npmInstall()
