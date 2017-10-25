@@ -92,7 +92,8 @@ module.exports = class extends Generator {
       this.props,
       {},
       {globOptions: {
-        ignore: ['server/authentication.js']}}
+        debug:true,
+        ignore: ['**/authentication.js', '**/swagger.json']}}
   )
   }
 
