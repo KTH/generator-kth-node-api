@@ -79,12 +79,10 @@ module.exports = class extends Generator {
       {},
       {globOptions: {
         debug:true,
-        ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*']}}
-  )
+        ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*']}})
   }
 
   install () {
-    return
     if (this.props.useMongo) {
       this.log('installing dependencies for MongoDB')
       this.npmInstall(['kth-node-mongo'], { 'save': true })
@@ -105,7 +103,7 @@ module.exports = class extends Generator {
     this.npmInstall(['nodemon'], { 'save-dev': true })
     this.npmInstall(['cross-env'], { 'save-dev': true })
 
-    // this.log('Running npm install for you')
-    // this.npmInstall()
+    this.log('Running npm install for you')
+    this.npmInstall()
   }
 }
