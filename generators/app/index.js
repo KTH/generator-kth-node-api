@@ -24,18 +24,18 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useMongo',
         message: 'Would you like to use a Mongo database?',
-        default: true
-      },
-      {
-        type: 'confirm',
-        name: 'useAuth',
-        message: 'Would you like to use authentication?',
         default: false
       },
       {
         type: 'confirm',
         name: 'useSwagger',
         message: 'Would you like to use Swagger?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'useAuth',
+        message: 'Would you like to use authentication?',
         default: false
       },
       {
