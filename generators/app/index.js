@@ -24,7 +24,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useMongo',
         message: 'Would you like to use a Mongo database?',
-        default: false
+        default: true
       },
       {
         type: 'confirm',
@@ -63,8 +63,18 @@ module.exports = class extends Generator {
 
     if (this.props.useMongo) {
       this.fs.copy(
-      this.templatePath('server/database.js'),
-      this.destinationPath('server/database.js')
+        this.templatePath('server/database.js'),
+        this.destinationPath('server/database.js')
+     )
+
+     this.fs.copy(
+       this.templatePath('server/models/index.js'),
+       this.destinationPath('server/models/index.js')
+    )
+
+    this.fs.copy(
+      this.templatePath('server/models/sample.js'),
+      this.destinationPath('server/models/sample.js')
    )
 
    // TODO: models
