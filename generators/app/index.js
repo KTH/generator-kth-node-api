@@ -42,7 +42,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useSamples',
         message: 'Would you like to generate sample code?',
-        default: false
+        default: true
       }
       // TODO: robots.txt?
     ]
@@ -67,11 +67,10 @@ module.exports = class extends Generator {
         this.destinationPath('server/database.js')
      )
 
-     this.fs.copy(
+      this.fs.copy(
        this.templatePath('server/models/index.js'),
        this.destinationPath('server/models/index.js')
     )
-
 
    // TODO: models
     }
@@ -103,6 +102,11 @@ module.exports = class extends Generator {
       {globOptions: {
         debug: false,
         ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*', '**/*sample*']}})
+
+        this.fs.copy(
+          this.templatePath('**/.*'),
+          this.destinationPath('./')
+        )
   }
 
   _install () {
