@@ -22,7 +22,7 @@ module.exports = {
   proxyPrefixPath: {
     uri: getEnv('SERVICE_PUBLISH', devPrefixPath)
   },
-  useSsl: true,
+  useSsl: false,
   port: getEnv('SERVER_PORT', devPort),
 
   ssl: {
