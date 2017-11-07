@@ -37,6 +37,12 @@ module.exports = class extends Generator {
         name: 'useSwagger',
         message: 'Would you like to use Swagger?',
         default: false
+      },
+      {
+        type: 'confirm',
+        name: 'useSamples',
+        message: 'Would you like to generate sample code?',
+        default: false
       }
       // TODO: robots.txt?
     ]
@@ -79,7 +85,7 @@ module.exports = class extends Generator {
       {},
       {globOptions: {
         debug:false,
-        ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*']}})
+        ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*', '**/*sample*']}})
   }
 
   install () {
