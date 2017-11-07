@@ -127,6 +127,7 @@ const ApiRouter = require('kth-node-express-routing').ApiRouter
 const apiRoute = ApiRouter()
 const paths = getPaths()
 
+<% if(useAuth){ %>
 // Middleware to protect enpoints with apiKey
 const authByApiKey = passport.authenticate('apikey', { session: false })
 
@@ -135,6 +136,8 @@ apiRoute.register(paths.api.checkAPIkey, authByApiKey, System.checkAPIKey)
 
 apiRoute.register(paths.api.getDataById, authByApiKey, Sample.getData)
 apiRoute.register(paths.api.postDataById, authByApiKey, Sample.postData)
+<% } %>
+
 server.use('/', apiRoute.getRouter())
 
 // Catch not found and errors

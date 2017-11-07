@@ -67,7 +67,7 @@ module.exports = class extends Generator {
       this.destinationPath('server/database.js')
    )
 
-   // TODO: models folder
+   // TODO: models
     }
 
     if (this.props.useSwagger) {
@@ -77,6 +77,17 @@ module.exports = class extends Generator {
    )
     }
 
+    if (this.props.useSamples) {
+      this.fs.copy(
+        this.templatePath('server/controllers/sampleCtrl.js'),
+        this.destinationPath('server/controllers/sampleCtrl.js')
+      )
+      this.fs.copy(
+        this.templatePath('server/models/sampleController.js'),
+        this.destinationPath('server/models/sample.js')
+      )
+    }
+
    // Copy every other file
     this.fs.copyTpl(
      this.templatePath('**/*'),
@@ -84,7 +95,7 @@ module.exports = class extends Generator {
       this.props,
       {},
       {globOptions: {
-        debug:false,
+        debug: false,
         ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*', '**/*sample*']}})
   }
 
