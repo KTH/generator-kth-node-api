@@ -2,9 +2,11 @@
 
 const packageFile = require('../../package.json')
 const getPaths = require('kth-node-express-routing').getPaths
-const db = require('kth-node-mongo')
 
-const Promise = require('bluebird')
+<% if(useMongo){ %>
+const db = require('kth-node-mongo')
+<% } %>
+
 const registry = require('component-registry').globalRegistry
 const { IHealthCheck } = require('kth-node-monitor').interfaces
 
@@ -50,8 +52,12 @@ function getAbout (req, res) {
  */
 function getMonitor (req, res) {
   // Check MongoDB
+  <% if(useMongo){ %>
   const mongodbHealthUtil = registry.getUtility(IHealthCheck, 'kth-node-mongodb')
   const subSystems = [mongodbHealthUtil.status(db, { required: true })]
+  <% }else{ %>
+    const subSystems = []
+  <% } %>
 
   // If we need local system checks, such as memory or disk, we would add it here.
   // Make sure it returns a promise which resolves with an object containing:

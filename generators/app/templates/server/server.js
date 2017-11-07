@@ -79,12 +79,14 @@ require('./authentication')
 server.use(passport.initialize())
 server.use(passport.session())
 <% } %>
+<% if(useMongo){ %>
 /* ************************
  * ******* DATABASE *******
  * ************************
  */
 // Just connect the database
 require('./database').connect()
+<% } %>
 
 /* **********************************
  * ******* APPLICATION ROUTES *******
@@ -92,7 +94,6 @@ require('./database').connect()
  */
 const addPaths = require('kth-node-express-routing').addPaths
 const { createApiPaths, createSwaggerRedirectHandler, notFoundHandler, errorHandler } = require('kth-node-api-common')
-const swaggerData = require('../swagger.json')
 const { System } = require('./controllers')
 
 // System pages routes
@@ -111,11 +112,14 @@ const redirectUrl = `${swaggerUrl}?url=${getPaths().system.swagger.uri}`
 server.use(swaggerUrl, createSwaggerRedirectHandler(redirectUrl, config.proxyPrefixPath.uri))
 server.use(swaggerUrl, express.static(path.join(__dirname, '../node_modules/swagger-ui/dist')))
 
+<% if(useSwagger){ %>
 // Add API endpoints defined in swagger to path definitions so we can use them to register API enpoint handlers
+const swaggerData = require('../swagger.json')
 addPaths('api', createApiPaths({
   swagger: swaggerData,
   proxyPrefixPathUri: config.proxyPrefixPath.uri
 }))
+<% } %>
 
 // Application specific API enpoints
 const { Sample } = require('./controllers')
