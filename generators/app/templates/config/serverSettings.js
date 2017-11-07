@@ -11,7 +11,7 @@ const { getEnv, unpackMongodbConfig } = require('kth-node-configuration')
 const { safeGet } = require('safe-utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
-const devPrefixPath = '/api/node'
+const devPrefixPath = '/api/<%= name%>'
 const devSsl = false
 const devPort = 3001
 const devMongodb = 'mongodb://localhost:27017/node'
