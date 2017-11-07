@@ -24,7 +24,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useMongo',
         message: 'Would you like to use a Mongo database?',
-        default: false
+        default: true
       },
       {
         type: 'confirm',
@@ -36,7 +36,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useAuth',
         message: 'Would you like to use authentication?',
-        default: false
+        default: true
       },
       {
         type: 'confirm',
@@ -72,10 +72,6 @@ module.exports = class extends Generator {
        this.destinationPath('server/models/index.js')
     )
 
-    this.fs.copy(
-      this.templatePath('server/models/sample.js'),
-      this.destinationPath('server/models/sample.js')
-   )
 
    // TODO: models
     }
@@ -93,7 +89,7 @@ module.exports = class extends Generator {
         this.destinationPath('server/controllers/sampleCtrl.js')
       )
       this.fs.copy(
-        this.templatePath('server/models/sampleController.js'),
+        this.templatePath('server/models/sample.js'),
         this.destinationPath('server/models/sample.js')
       )
     }
@@ -109,7 +105,7 @@ module.exports = class extends Generator {
         ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*', '**/*sample*']}})
   }
 
-  install () {
+  _install () {
     if (this.props.useMongo) {
       this.log('installing dependencies for MongoDB')
       this.npmInstall(['kth-node-mongo'], { 'save': true })
