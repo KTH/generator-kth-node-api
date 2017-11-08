@@ -37,12 +37,6 @@ module.exports = class extends Generator {
         name: 'useAuth',
         message: 'Would you like to use authentication?',
         default: true
-      },
-      {
-        type: 'confirm',
-        name: 'useSamples',
-        message: 'Would you like to generate sample code?',
-        default: true
       }
       // TODO: robots.txt?
     ]
@@ -70,9 +64,16 @@ module.exports = class extends Generator {
       this.fs.copy(
        this.templatePath('server/models/index.js'),
        this.destinationPath('server/models/index.js')
-    )
+     )
 
-   // TODO: models
+     this.fs.copy(
+       this.templatePath('server/controllers/sampleCtrl.js'),
+       this.destinationPath('server/controllers/sampleCtrl.js')
+     )
+     this.fs.copy(
+       this.templatePath('server/models/sample.js'),
+       this.destinationPath('server/models/sample.js')
+     )
     }
 
     if (this.props.useSwagger) {
@@ -82,16 +83,7 @@ module.exports = class extends Generator {
    )
     }
 
-    if (this.props.useSamples) {
-      this.fs.copy(
-        this.templatePath('server/controllers/sampleCtrl.js'),
-        this.destinationPath('server/controllers/sampleCtrl.js')
-      )
-      this.fs.copy(
-        this.templatePath('server/models/sample.js'),
-        this.destinationPath('server/models/sample.js')
-      )
-    }
+
 
    // Copy every other file
     this.fs.copyTpl(

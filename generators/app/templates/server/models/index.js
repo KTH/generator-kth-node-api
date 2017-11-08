@@ -1,5 +1,5 @@
 module.exports = {
-  <% if(useSamples){ %>
+  <% if(useMongo){ %>
   sample: require('./sample')
   <% } %>
 }
