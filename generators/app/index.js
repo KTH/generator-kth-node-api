@@ -8,7 +8,7 @@ module.exports = class extends Generator {
   prompting () {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the dandy ' + chalk.red('generator-kth-node-api') + ' generator!'
+      "Dags att skapa ett nytt api!"
     ))
 
     this.log(this.sourceRoot(), )
@@ -42,7 +42,7 @@ module.exports = class extends Generator {
     ]
 
     return this.prompt(prompts).then(props => {
-      props.name = props.name.replace(/\s/g, '-')
+      props.name = props.name.replace(/\s/g, '-') // No whitespce in name
       this.props = props
     })
   }
