@@ -94,14 +94,9 @@ module.exports = class extends Generator {
       {globOptions: {
         debug: false,
         ignore: ['**/authentication.js', '**/swagger.json', '**/database.js', '**/models/*', '**/*sample*']}})
-
-        this.fs.copy(
-          this.templatePath('**/.*'),
-          this.destinationPath('./')
-        )
   }
 
-  _install () {
+  install () {
     if (this.props.useMongo) {
       this.log('installing dependencies for MongoDB')
       this.npmInstall(['kth-node-mongo'], { 'save': true })
