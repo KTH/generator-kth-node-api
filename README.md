@@ -1,5 +1,5 @@
 # generator-kth-node-api [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> 
+>
 
 ## Installation
 
@@ -7,7 +7,7 @@ First, install [Yeoman](http://yeoman.io) and generator-kth-node-api using [npm]
 
 ```bash
 npm install -g yo
-npm install -g generator-kth-node-api
+npm install -g kth/generator-kth-node-api
 ```
 
 Then generate your new project:
