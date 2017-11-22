@@ -7,7 +7,7 @@ First, install [Yeoman](http://yeoman.io) and generator-kth-node-api using [npm]
 
 ```bash
 npm install -g yo
-npm install -g kth/generator-kth-node-api
+npm install -g generator-kth-node-api
 ```
 
 Then generate your new project:
