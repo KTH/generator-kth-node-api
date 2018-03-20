@@ -59,6 +59,11 @@ module.exports = class extends Generator {
      this.destinationPath('.gitignore')
   )
 
+  this.fs.copy(
+    this.templatePath('.dockerignore'),
+    this.destinationPath('.dockerignore')
+ )
+
     if (this.props.useAuth) {
       this.fs.copy(
       this.templatePath('server/authentication.js'),
