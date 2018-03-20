@@ -48,6 +48,17 @@ module.exports = class extends Generator {
   }
 
   writing () {
+
+    this.fs.copy(
+      this.templatePath('.env'),
+      this.destinationPath('.env')
+   )
+
+   this.fs.copy(
+     this.templatePath('.gitignore'),
+     this.destinationPath('.gitignore')
+  )
+
     if (this.props.useAuth) {
       this.fs.copy(
       this.templatePath('server/authentication.js'),

@@ -1,4 +1,4 @@
-FROM kthse/kth-nodejs-api:2.3
+FROM node:8.9-wheezy
 
 RUN mkdir -p /npm && \
     mkdir -p /application
@@ -13,11 +13,9 @@ WORKDIR /application
 RUN cp -a /npm/node_modules /application && \
     rm -rf /npm
 
-# Copy files used by Gulp.
+# Copy files
 COPY ["config", "config"]
 COPY ["package.json", "package.json"]
-
-# Copy source files, so changes does not trigger gulp.
 COPY ["app.js", "app.js"]
 COPY ["server", "server"]
 
