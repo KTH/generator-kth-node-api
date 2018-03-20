@@ -19,6 +19,6 @@ COPY ["package.json", "package.json"]
 COPY ["app.js", "app.js"]
 COPY ["server", "server"]
 
-EXPOSE 3000
+EXPOSE 3000 3000
 
 ENTRYPOINT ["node", "app.js"]
