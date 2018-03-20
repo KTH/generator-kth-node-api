@@ -11,3 +11,16 @@ app.start({
   port: config.port,
   logger
 })
+
+console.log(`
+
+
+  ::::::::::::
+
+  App is started. You can verify that it works by browsing to
+  http://localhost:${config.port}/api/<%= name %>/_about
+
+  ::::::::::
+
+
+  `)
