@@ -16,6 +16,12 @@ Then generate your new project:
 yo kth-node-api
 ```
 
+Then start the server with:
+```
+npm start
+```
+Test that the app works by browsing to: http://localhost:3000/<name>/_about where <name> is the choosen name when running the generator
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
