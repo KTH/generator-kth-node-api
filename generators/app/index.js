@@ -12,7 +12,7 @@ module.exports = class extends Generator {
     ))
 
     this.log(this.sourceRoot(), )
-
+    this.log('hi!')
     const prompts = [
       {
         type: 'text',
@@ -20,24 +20,24 @@ module.exports = class extends Generator {
         message: "What's the name of the app?",
         default: process.cwd().split(path.sep).pop()
       },
-      {
-        type: 'confirm',
-        name: 'useMongo',
-        message: 'Would you like to use a Mongo database?',
-        default: true
-      },
-      {
-        type: 'confirm',
-        name: 'useSwagger',
-        message: 'Would you like to use Swagger?',
-        default: true
-      },
-      {
-        type: 'confirm',
-        name: 'useAuth',
-        message: 'Would you like to use authentication?',
-        default: true
-      }
+      // {
+      //   type: 'confirm',
+      //   name: 'useMongo',
+      //   message: 'Would you like to use a Mongo database?',
+      //   default: true
+      // },
+      // {
+      //   type: 'confirm',
+      //   name: 'useSwagger',
+      //   message: 'Would you like to use Swagger?',
+      //   default: true
+      // },
+      // {
+      //   type: 'confirm',
+      //   name: 'useAuth',
+      //   message: 'Would you like to use authentication?',
+      //   default: true
+      // }
       // TODO: robots.txt?
     ]
 
